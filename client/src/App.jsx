@@ -1,13 +1,19 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import Header from "./components/Header";
 import "./App.css";
+import Hero from "./components/Hero";
+import Artwork from "./components/Artwork";
+import Transaction from "./components/Transaction";
 
 function App() {
   return (
-    <>
-      <h1>ticket10X</h1>
-    </>
+    <div className="min-h-screen">
+      <div className="gradient-bg-hero">
+        <Header />
+        <Hero />
+      </div>
+      <Artwork />
+      <Transaction />
+    </div>
   );
 }
 
