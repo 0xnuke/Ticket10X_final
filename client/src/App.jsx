@@ -3,6 +3,8 @@ import "./App.css";
 import Hero from "./components/Hero";
 import Artwork from "./components/Artwork";
 import Transaction from "./components/Transaction";
+import Funding_section from "./components/Funding";
+import FundingDetail from "./components/funding_detail";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       </div>
       <Artwork />
       <Transaction />
+      <Funding_section/>
+      <FundingDetail/>
     </div>
   );
 }
