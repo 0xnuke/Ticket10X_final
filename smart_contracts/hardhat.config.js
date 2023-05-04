@@ -1,30 +1,18 @@
 require("@nomiclabs/hardhat-waffle");
-require("@nomiclabs/hardhat-ethers");
+require("solidity-coverage");
 
+require("dotenv").config();
 
-require("@nomiclabs/hardhat-etherscan");
-require('dotenv').config();
+const GOERLI_URL = process.env.GOERLI_URL;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
-const { alchemyApiKey, privateKey,etherscanAPIKey } = process.env;
-
+/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
+  solidity: "0.8.0",
   networks: {
     goerli: {
-      url: `https://eth-goerli.alchemyapi.io/v2/${alchemyApiKey}`,
-      accounts: [`0x${privateKey}`]
-    }
-  },
-   etherscan: {
-    apiKey:etherscanAPIKey  // Replace with your API key
-  },
-  solidity: {
-    version: '0.8.9',
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200
-      }
-    }
+      url: GOERLI_URL,
+      accounts: [PRIVATE_KEY], // replace with your private key
+    },
   },
 };
-  

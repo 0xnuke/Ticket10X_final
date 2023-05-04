@@ -36,7 +36,7 @@ const Upcoming = () => {
     <div className="bg-white py-10">
       <div className="w-4/5 mx-auto">
         <h4 className="text-gray-800 text-3xl font-bold uppercase">
-          Upcoming Events...
+         Marketplace
         </h4>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-4 lg:gap-3 py-5">

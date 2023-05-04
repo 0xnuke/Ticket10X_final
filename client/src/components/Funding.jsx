@@ -21,7 +21,7 @@ const Funding = () => {
       description: "This crowdfunding music event is a tour featuring up-and-coming indie bands, with funds raised going towards supporting independent music venues that have been impacted by the pandemic.",
       date: "12",
       img: "../funding_detail/event_1.jpg",
-      voting: 3210,
+      voting: 2000,
       status: "open",
       currentFund: 20000,
       fundTarget: 35000,
@@ -45,7 +45,7 @@ const Funding = () => {
       img: "../funding_detail/event_3.jpg",
       voting: 3670,
       status: "open",
-      currentFund: 40650 ,
+      currentFund: 36700 ,
       fundTarget: 50000,
     },
     {
@@ -56,7 +56,7 @@ const Funding = () => {
       img: "../funding_detail/event_4.jpg",
       voting: 8216,
       status: "open",
-      currentFund: 15000,
+      currentFund: 82160,
       fundTarget: 150000,
     },
   ])

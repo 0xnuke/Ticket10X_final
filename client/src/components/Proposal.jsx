@@ -17,7 +17,7 @@ async function Pay_Vote() {
       const txHash = voting.transactionHash;
       alert(`Vote success! Transaction hash: ${txHash}`);
       return voting; // Add this line to return the voting object
-    } catch (error) {
+    } catch (error) { 
       console.error(error);
       throw new Error('Transaction failed');
     }
@@ -28,26 +28,18 @@ async function Pay_Vote() {
 
 const Proposal = ({ proposalCard, setProposalCard }) => {
 
-  const vote = async (id) => {
-    const proposalIndex = proposalCard.findIndex((proposal) => proposal.id === id);
-    const proposal = proposalCard[proposalIndex];
-    const newCurrentFund = prompt(`Vote ${proposal.title}?`);
-    if (newCurrentFund) {
-      try {
-        const voting = await Pay_Vote(); // Store the voting object in a variable
-        const newProposalCard = [...proposalCard];
-        const updateCurrentFund = proposal.currentFund + parseInt(newCurrentFund);
-        newProposalCard[proposalIndex] = { ...proposal, currentFund: updateCurrentFund };
-        if (updateCurrentFund >= proposal.fundTarget) {
-          newProposalCard[proposalIndex].status = "success";
-        }
-        setProposalCard(newProposalCard);
-      } catch (error) {
-        console.error(error);
-        // Break out of the function if the transaction failed
-        return;
+  const vote = (id) => {
+    const updatedProposalCard = proposalCard.map((card) => {
+      if (card.id === id && card.status !== "success") {
+        return {
+          ...card,
+          voting: card.voting + 1,
+          currentFund: card.currentFund + 10,
+        };
       }
-    }
+      return card;
+    });
+    setProposalCard(updatedProposalCard);
   };
 
 

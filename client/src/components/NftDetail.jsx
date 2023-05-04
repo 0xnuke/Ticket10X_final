@@ -36,7 +36,7 @@ const NftDetail = () => {
             >
                 <span className="capitalize">BUY </span>
                 <span className="uppercase text-green-600">Collectible </span>
-                <span className="capitalize">TICKET.</span>
+                <span className="capitalize">TICKETS.</span>
             </h1>
                 <div className="m-10">
                     <div className="flex justify-center py-24 px-8 ">

@@ -10,10 +10,10 @@ const MakeProposal = ({ onAdd }) => {
         description: "",
         date: "",
         img: "../funding_detail/event_1.jpg",
-        voting: "0",
+        voting: 0,
         status: "",
-        currentFund: "0",
-        fundTarget: "",
+        currentFund: 0,
+        fundTarget: 0,
     });
 
     const handleChange = (event) => {
