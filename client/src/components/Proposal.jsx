@@ -1,21 +1,55 @@
 
+import Web3 from "web3";
+import Vote from "../../../smart_contracts/artifacts/contracts/Vote.sol/GoerliETHTransfer.json";
+
+async function Pay_Vote() {
+  if (window.ethereum) {
+    const web3 = new Web3(window.ethereum);
+    try {
+      // Request account access
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      const accounts = await web3.eth.getAccounts();
+      const tokenContract = new web3.eth.Contract(Vote.abi, '0xa029b0E7b7EADE16Bc16F0035EAc2d0237c04143');
+      // Mint the token
+      const voting = await tokenContract.methods.transfer(1).send({ from: accounts[0] });
+
+      // Get the transaction hash and display it
+      const txHash = voting.transactionHash;
+      alert(`Vote success! Transaction hash: ${txHash}`);
+      return voting; // Add this line to return the voting object
+    } catch (error) {
+      console.error(error);
+      throw new Error('Transaction failed');
+    }
+  } else {
+    console.log("No web3 provider detected");
+  }
+}
 
 const Proposal = ({ proposalCard, setProposalCard }) => {
 
-  const vote = (id) => {
+  const vote = async (id) => {
     const proposalIndex = proposalCard.findIndex((proposal) => proposal.id === id);
     const proposal = proposalCard[proposalIndex];
-    const newCurrentFund = prompt(`How much do you want to donate to ${proposal.title}?`);
+    const newCurrentFund = prompt(`Vote ${proposal.title}?`);
     if (newCurrentFund) {
-      const newProposalCard = [...proposalCard];
-      const updateCurrentFund = proposal.currentFund + parseInt(newCurrentFund);
-      newProposalCard[proposalIndex] = { ...proposal, currentFund: updateCurrentFund };
-      if (updateCurrentFund >= proposal.fundTarget) {
-        newProposalCard[proposalIndex].status = "success";
+      try {
+        const voting = await Pay_Vote(); // Store the voting object in a variable
+        const newProposalCard = [...proposalCard];
+        const updateCurrentFund = proposal.currentFund + parseInt(newCurrentFund);
+        newProposalCard[proposalIndex] = { ...proposal, currentFund: updateCurrentFund };
+        if (updateCurrentFund >= proposal.fundTarget) {
+          newProposalCard[proposalIndex].status = "success";
+        }
+        setProposalCard(newProposalCard);
+      } catch (error) {
+        console.error(error);
+        // Break out of the function if the transaction failed
+        return;
       }
-      setProposalCard(newProposalCard);
     }
   };
+
 
 
   const cards = proposalCard.map((card) => (
@@ -78,6 +112,7 @@ const Proposal = ({ proposalCard, setProposalCard }) => {
       </div>
     </div>
   ));
+
 
   return (
     // Main Container

@@ -1,5 +1,32 @@
+import Web3 from "web3";
+import Token from "../../../smart_contracts/artifacts/contracts/Token.sol/Token.json";
+
 
 const NftDetail = () => {
+
+    async function uploadAndMint() {
+        // Mint the NFT using the inputted IPFS link smart_contracts\artifacts\contracts\Token.sol
+        if (window.ethereum) {
+          const web3 = new Web3(window.ethereum);
+          try {
+            // Request account access
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+            const accounts = await web3.eth.getAccounts();
+            const tokenContract = new web3.eth.Contract(Token.abi, '0x9f2b776240227B73A513d9c60dD6c0B508Ca9BFF');
+            // Mint the token
+            const mintTx = await tokenContract.methods.safeMint('0x5d79EDd26fFaa50279205778eCE9ed4E36459008', 'https://ipfs.io/ipfs/QmXTox97TMCKe5HRZnmGGARsmt4FqVBZRMsdTUsnaB5BHv?filename=ticket_1.png').send({ from: accounts[0] });
+    
+            // Get the transaction hash and display it
+            const txHash = mintTx.transactionHash;
+            alert(`NFT minted! Transaction hash: ${txHash}`);
+          } catch (error) {
+            console.error(error);
+          }
+        } else {
+          console.log("No web3 provider detected");
+        }
+    
+    }
 
     return (
             <div className="justify-center items-center h-screen">
@@ -76,7 +103,7 @@ const NftDetail = () => {
 
                                     {/* Buy button */}
                                     <div className="flex justify-between items-center">
-                                        <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">
+                                        <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700" onClick={uploadAndMint}>
                                             Buy Now
                                         </button>
                                         <span className="text-gray-600 font-bold ml-2"> Current Price:  3.2 ETH</span>

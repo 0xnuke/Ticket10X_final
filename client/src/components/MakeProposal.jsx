@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 const MakeProposal = ({ onAdd }) => {
 
+
     const [proposal, setProposal] = useState({
         id: "",
         title: "",
