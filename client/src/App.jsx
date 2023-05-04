@@ -1,22 +1,21 @@
 import Header from "./components/Header";
 import "./App.css";
-import Hero from "./components/Hero";
-import Artwork from "./components/Artwork";
-import Transaction from "./components/Transaction";
-import Funding_section from "./components/Funding";
-import FundingDetail from "./components/funding_detail";
+import Banner from "./components/Banner";
+import Funding from "./components/Funding";
+import Upcoming from "./components/Upcoming";
+import NftDetail from "./components/NftDetail";
+
 
 function App() {
   return (
     <div className="min-h-screen">
       <div className="gradient-bg-hero">
         <Header />
-        <Hero />
+        <Banner />
       </div>
-      <Artwork />
-      <Transaction />
-      <Funding_section/>
-      <FundingDetail/>
+      <Upcoming />
+      <Funding />
+      <NftDetail />
     </div>
   );
 }
