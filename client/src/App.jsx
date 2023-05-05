@@ -4,19 +4,16 @@ import Banner from "./components/Banner";
 import Funding from "./components/Funding";
 import Upcoming from "./components/Upcoming";
 import NftDetail from "./components/NftDetail";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Homepage from "./page/Homepage";
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <div className="gradient-bg-hero">
-        <Header />
-        <Banner />
-      </div>
-      <Upcoming />
-      <Funding />
-      <NftDetail />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

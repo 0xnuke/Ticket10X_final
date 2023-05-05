@@ -1,9 +1,8 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import MakeProposal from "./MakeProposal";
 import Proposal from "./Proposal";
 
 const Funding = () => {
-
   const [sector, setSector] = useState("proposal");
 
   const addProposal = (proposal) => {
@@ -18,7 +17,8 @@ const Funding = () => {
     {
       id: 0,
       title: "Music Event 1",
-      description: "This crowdfunding music event is a tour featuring up-and-coming indie bands, with funds raised going towards supporting independent music venues that have been impacted by the pandemic.",
+      description:
+        "This crowdfunding music event is a tour featuring up-and-coming indie bands, with funds raised going towards supporting independent music venues that have been impacted by the pandemic.",
       date: "12",
       img: "../funding_detail/event_1.jpg",
       voting: 2000,
@@ -29,7 +29,8 @@ const Funding = () => {
     {
       id: 1,
       title: "Music Event 2",
-      description: "This crowdfunding music event is a series of outdoor concerts featuring local musicians, with proceeds going towards environmental conservation efforts in the community.",
+      description:
+        "This crowdfunding music event is a series of outdoor concerts featuring local musicians, with proceeds going towards environmental conservation efforts in the community.",
       date: "0",
       img: "../funding_detail/event_2.jpg",
       voting: 4000,
@@ -40,29 +41,30 @@ const Funding = () => {
     {
       id: 2,
       title: "Music Event 3",
-      description: "This crowdfunding music event is a charity concert featuring a range of popular artists, with proceeds going towards supporting mental health initiatives for musicians and music industry professionals.",
+      description:
+        "This crowdfunding music event is a charity concert featuring a range of popular artists, with proceeds going towards supporting mental health initiatives for musicians and music industry professionals.",
       date: "18",
       img: "../funding_detail/event_3.jpg",
       voting: 3670,
       status: "open",
-      currentFund: 36700 ,
+      currentFund: 36700,
       fundTarget: 50000,
     },
     {
       id: 3,
       title: "Music Event 4",
-      description: "This crowdfunding music event is a charity concert featuring a range of popular artists, with proceeds going towards supporting mental health initiatives for musicians and music industry professionals.",
-      date: "0",
+      description:
+        "This crowdfunding music event is a charity concert featuring a range of popular artists, with proceeds going towards supporting mental health initiatives for musicians and music industry professionals.",
+      date: "3",
       img: "../funding_detail/event_4.jpg",
       voting: 8216,
       status: "open",
       currentFund: 82160,
       fundTarget: 150000,
     },
-  ])
+  ]);
 
   return (
-
     <div className="text-center bg-white text-gray-800 py-24 px-6">
       <h1
         className="text-5xl md:text-6xl xl:text-7xl font-bold
@@ -77,32 +79,43 @@ const Funding = () => {
           type="button"
           className={`inline-block px-6 py-2.5 rounded-full
           font-medium text-xs leading-tight uppercase hover:bg-green-700 hover:text-white
-          ${sector === 'proposal' ? 'bg-green-600 text-white' : 'border border-green-600 text-green-600 '}
+          ${
+            sector === "proposal"
+              ? "bg-green-600 text-white"
+              : "border border-green-600 text-green-600 "
+          }
           `}
-          onClick={() => setSector('proposal')}
+          onClick={() => setSector("proposal")}
         >
           Proposal
         </button>
-
 
         <button
           type="button"
           className={`inline-block px-6 py-2.5 rounded-full
           font-medium text-xs leading-tight uppercase hover:bg-green-700 hover:text-white
-          ${sector === 'makeProposal' ? 'bg-green-600 hover:bg-green-700 text-white' : 'border border-green-600 text-green-600 '}
+          ${
+            sector === "makeProposal"
+              ? "bg-green-600 hover:bg-green-700 text-white"
+              : "border border-green-600 text-green-600 "
+          }
           `}
-          onClick={() => setSector('makeProposal')}
+          onClick={() => setSector("makeProposal")}
         >
           Make Proposal
         </button>
       </div>
       <div>
-        {sector === 'proposal' && <Proposal proposalCard={proposalCard} setProposalCard={setProposalCard}/>}
-        {sector === 'makeProposal' && <MakeProposal onAdd={addProposal} />}
+        {sector === "proposal" && (
+          <Proposal
+            proposalCard={proposalCard}
+            setProposalCard={setProposalCard}
+          />
+        )}
+        {sector === "makeProposal" && <MakeProposal onAdd={addProposal} />}
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Funding
+export default Funding;

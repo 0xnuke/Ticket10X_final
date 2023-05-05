@@ -8,7 +8,7 @@ const Card = ({ card }) => {
       />
       <h4 className="text-gray-800 font-semibold text-lg">{card.name}</h4>
       <div className="h-40">
-      <p className="text-gray-500 text-sm my-1">{card.description}</p>
+        <p className="text-gray-500 text-sm my-1">{card.description}</p>
       </div>
       <div className="flex justify-between items-center mt-3 text-gray-800">
         <div className="flex flex-col">
