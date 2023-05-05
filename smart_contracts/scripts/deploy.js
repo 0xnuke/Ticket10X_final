@@ -12,9 +12,9 @@ async function main() {
 
   
 
-  const Vote = await hre.ethers.getContractFactory("GoerliETHTransfer")
-  const vote = await Vote.deploy();
-  await vote.deployed();
+  const Pool = await hre.ethers.getContractFactory("GoerliETHHolder")
+  const pool = await Pool.deploy();
+  await pool.deployed();
 
   // const lockedAmount = hre.ethers.utils.parseEther("0.0021");
 
@@ -29,7 +29,7 @@ async function main() {
   // );
 
   console.log(
-    `Deployed to ${vote.address}`
+    `Deployed to ${pool.address}`
   );
 }
 

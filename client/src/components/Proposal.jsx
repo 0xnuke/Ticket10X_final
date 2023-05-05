@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import Vote from "../../../smart_contracts/artifacts/contracts/Vote.sol/GoerliETHTransfer.json";
+import Pool from "../../../smart_contracts/artifacts/contracts/Pool.sol/GoerliETHHolder.json";
 
 async function Pay_Vote() {
   if (window.ethereum) {
@@ -9,12 +9,12 @@ async function Pay_Vote() {
       await window.ethereum.request({ method: "eth_requestAccounts" });
       const accounts = await web3.eth.getAccounts();
       const tokenContract = new web3.eth.Contract(
-        Vote.abi,
-        "0xa029b0E7b7EADE16Bc16F0035EAc2d0237c04143"
+        Pool.abi,
+        "0x22cB458FD5263d9baAD33279C659fC6c49668Cf4"
       );
       // Mint the token
       const voting = await tokenContract.methods
-        .transfer(1)
+        .sendETH()
         .send({ from: accounts[0] });
 
       // Get the transaction hash and display it
