@@ -28,21 +28,33 @@ async function Pay_Vote() {
   } else {
     console.log("No web3 provider detected");
   }
+  return undefined; // Return undefined when the transaction fails
 }
 
 const Proposal = ({ proposalCard, setProposalCard }) => {
-  const vote = (id) => {
-    const updatedProposalCard = proposalCard.map((card) => {
+  const vote = async (id) => {
+    const updatedProposalCard = proposalCard.map(async (card) => { // Add async keyword here
       if (card.id === id && card.status !== "success") {
-        return {
-          ...card,
-          voting: card.voting + 1,
-          currentFund: card.currentFund + 10,
-        };
+
+
+        try {
+          const proposalIndex = proposalCard.findIndex((proposal) => proposal.id === id);
+          const proposal = proposalCard[proposalIndex];
+          const newCurrentFund = prompt(`VOTE ${proposal.title}?`);
+          await Pay_Vote();
+          return {
+            ...card,
+            voting: card.voting + 1,
+            currentFund: card.currentFund + 10,
+          };
+        } catch (error) {
+          console.error(error);
+          throw new Error("Vote failed");
+        }
       }
       return card;
     });
-    setProposalCard(updatedProposalCard);
+    setProposalCard(await Promise.all(updatedProposalCard)); // Wait for all the promises to be resolved with Promise.all()
   };
 
   const cards = proposalCard.map((card) => (
