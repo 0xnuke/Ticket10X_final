@@ -57,9 +57,9 @@ const Funding = () => {
         "This crowdfunding music event is a charity concert featuring a range of popular artists, with proceeds going towards supporting mental health initiatives for musicians and music industry professionals.",
       date: "3",
       img: "../funding_detail/event_4.jpg",
-      voting: 8216,
+      voting: 1400,
       status: "open",
-      currentFund: 82160,
+      currentFund: 14000,
       fundTarget: 150000,
     },
   ]);

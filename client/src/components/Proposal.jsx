@@ -33,20 +33,24 @@ async function Pay_Vote() {
 
 const Proposal = ({ proposalCard, setProposalCard }) => {
   const vote = async (id) => {
-    const updatedProposalCard = proposalCard.map(async (card) => { // Add async keyword here
+    const updatedProposalCard = proposalCard.map(async (card) => {
       if (card.id === id && card.status !== "success") {
-
-
         try {
-          const proposalIndex = proposalCard.findIndex((proposal) => proposal.id === id);
+          const proposalIndex = proposalCard.findIndex(
+            (proposal) => proposal.id === id
+          );
           const proposal = proposalCard[proposalIndex];
-          const newCurrentFund = prompt(`VOTE ${proposal.title}?`);
+          const newCurrentFund = parseInt(prompt(`VOTE ${proposal.title}?`));
           await Pay_Vote();
-          return {
+          const updatedCard = {
             ...card,
             voting: card.voting + 1,
-            currentFund: card.currentFund + 10,
+            currentFund: card.currentFund + newCurrentFund,
           };
+          if (updatedCard.currentFund >= updatedCard.fundTarget) {
+            updatedCard.status = "success";
+          }
+          return updatedCard;
         } catch (error) {
           console.error(error);
           throw new Error("Vote failed");
@@ -54,8 +58,9 @@ const Proposal = ({ proposalCard, setProposalCard }) => {
       }
       return card;
     });
-    setProposalCard(await Promise.all(updatedProposalCard)); // Wait for all the promises to be resolved with Promise.all()
+    setProposalCard(await Promise.all(updatedProposalCard));
   };
+  
 
   const cards = proposalCard.map((card) => (
     <div

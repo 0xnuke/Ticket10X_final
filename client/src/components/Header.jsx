@@ -42,7 +42,7 @@ const Header = () => {
           <li className="mx-4 cursor-pointer">Event Crowdfunding</li>
         </Link>
         <Link to="collectible" smooth={true} duration={1000}>
-          <li className="mx-4 cursor-pointer">Collectible</li>
+          <li className="mx-4 cursor-pointer">Get Tickets</li>
         </Link>
         <Link to="marketplace" smooth={true} duration={1000}>
           <li className="mx-4 cursor-pointer">Marketplace</li>
